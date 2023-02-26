@@ -40,8 +40,7 @@ def create_app(test_config=None):
     app.register_blueprint(loginapi.login_api)
 
     if session["loggedin"] == True:
-
-        from .api import sets, mix_design, specimen_types, cylinders, mix_used, clients, projects
+        from .api import sets, mix_design, specimen_types, cylinders, mix_used, clients, projects  # , loginapi
         app.register_blueprint(sets.set_blueprint)
         app.register_blueprint(mix_design.bp)
         app.register_blueprint(specimen_types.speciman_types)
@@ -49,7 +48,7 @@ def create_app(test_config=None):
         app.register_blueprint(mix_used.mix_used_blueprint)
         app.register_blueprint(clients.bp)
         app.register_blueprint(projects.bp)
-
+        # app.register_blueprint(loginapi.login_api)
     else:
         return abort(401)
     # myapp = app.app_context()

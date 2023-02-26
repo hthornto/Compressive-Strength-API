@@ -1,6 +1,6 @@
 venv
 docker-compose.yml
-.venv
+.env
 Dockerfile
 .vscode
 .dockerignore

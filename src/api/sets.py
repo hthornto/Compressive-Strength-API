@@ -266,8 +266,10 @@ def delete_set(id: int):
         db.session.delete(sets)
         db.session.commit()
         return Response("Resouce deleted", 204)
+
     except:
         return Response("Error occured", 204)
+        # return "NO"
 
 # update multiple cylinders at a time
 
