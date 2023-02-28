@@ -10,13 +10,12 @@ def create_app(test_config=None):
     app.config.from_mapping(
 
         SECRET_KEY=config("SECRET_KEY"),
-        SQLALCHEMY_DATABASE_URI='postgresql://' + config("DB_USER") + ':' + config(
+        SQLALCHEMY_DATABASE_URI=config('DB_TYPE') + '://' + config("DB_USER") + ':' + config(
             "DB_PASSWORD") + '@' + config("DB_HOST") + ':' + config("PORT") + '/' + config("DB_NAME"),
-        # SQLALCHEMY_DATABASE_URI='postgresql://postgres:admin123@localhost:5432/compressive_strength',
         SQLALCHEMY_ECHO=True,
         SQLALCHEMY_TRACK_MODIFICATIONS=True,
         TESTING=config("TESTING"),
-        SESSION_COOKIE_HTTPONLY=False
+        # SESSION_COOKIE_HTTPONLY=False
 
     )
 
