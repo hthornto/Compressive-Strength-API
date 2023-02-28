@@ -5,3 +5,4 @@ Dockerfile
 .vscode
 .dockerignore
 __pycache__
+testing
