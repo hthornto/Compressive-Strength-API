@@ -6,3 +6,4 @@ Dockerfile
 .dockerignore
 __pycache__
 testing
+migrations
