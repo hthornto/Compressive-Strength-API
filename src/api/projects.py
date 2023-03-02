@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, abort, request
 from ..models import Clients, db, Projects
 import sqlalchemy
 from ..common_elements import Auth
+import logging
 
 bp = Blueprint("projects", __name__, url_prefix="/api/projects")
 
@@ -43,7 +44,8 @@ def create():
             db.session.add(p)
             db.session.commit()
             return jsonify(p.serialize())
-        except:
+        except BaseException as e:
+            logging.critical(e)
             return jsonify(False)
     else:
         return abort(401)
@@ -63,6 +65,7 @@ def delete(id: int):
             return jsonify(False)
     else:
         return abort(401)
+
 
 @bp.route("/<int:id>", methods=["PUT", "PATCH"])
 def update(id: int):

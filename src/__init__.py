@@ -11,7 +11,7 @@ import sqlalchemy
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     config = configparser.ConfigParser()
-    config.read('settings.ini')
+    config.read('../settings.ini')
     app.config.from_mapping(
         SECRET_KEY=config['General']["SECRET_KEY"],
         SQLALCHEMY_DATABASE_URI=config['Main Database']['DB_DIALECT'] + '://' + config['Main Database']["DB_USERNAME"] + ':' + config['Main Database']["DB_PASSWORD"] +
@@ -44,8 +44,8 @@ def create_app(test_config=None):
     from .models import db
     db.init_app(app)
     migrate = Migrate(app, db)
-    # with app.app_context():
-    #    db.create_all()
+    with app.app_context():
+        db.create_all()
     from .api import loginapi
     app.register_blueprint(loginapi.login_api)
 

@@ -70,9 +70,9 @@ def create():
 
             db.session.add(client)
             db.session.commit()
-            return jsonify({"status": 200, "response": client.serialize()})
-        except:  # BaseException as e:
-            # logging.error(e)
+            return jsonify(client.serialize())
+        except BaseException as e:
+            logging.critical(str(e))
             return abort(400)
     else:
         return abort(401)
