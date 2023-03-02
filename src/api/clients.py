@@ -1,8 +1,13 @@
-from flask import Blueprint, jsonify, abort, request
+from flask import Blueprint, jsonify, abort, request, Response
 from ..models import Clients, db
 from ..common_elements import Auth
+import logging
+
 
 bp = Blueprint("clients", __name__, url_prefix="/api/clients")
+
+logging.basicConfig(filename='compressive-strength.log',
+                    encoding='utf-8', level=logging.WARNING)
 
 
 @bp.route("", methods=["GET"])
@@ -61,10 +66,14 @@ def create():
             postalcode=postalcode,
             country=country,
         )
+        try:
 
-        db.session.add(client)
-        db.session.commit()
-        return jsonify(client.serialize())
+            db.session.add(client)
+            db.session.commit()
+            return jsonify({"status": 200, "response": client.serialize()})
+        except:  # BaseException as e:
+            # logging.error(e)
+            return abort(400)
     else:
         return abort(401)
 
@@ -77,7 +86,8 @@ def delete(id: int):
             db.session.delete(client)
             db.session.commit()
             return jsonify(True)
-        except:
+        except Exception as e:
+            logging.error(e)
             return jsonify(False)
     else:
         return abort(401)
@@ -105,6 +115,6 @@ def update(id: int):
             db.session.commit()
             return jsonify(c.serialize())
         except:
-            return jsonify(False)
+            return abort(400)
     else:
         return abort(401)

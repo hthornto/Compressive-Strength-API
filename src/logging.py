@@ -1,5 +1,7 @@
 from logging.config import dictConfig
 
-from logging import config
+# from logging import config
 
-# class loggin
+
+class Logging:
+    pass

@@ -1,22 +1,31 @@
 import os
 from flask import Flask, session, abort
-# from flask_sqlalchemy import SQLAlchemy
-from decouple import config
+from flask_sqlalchemy import SQLAlchemy
+# from decouple import config
 from flask_migrate import Migrate
+import configparser
+
+import sqlalchemy
 
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
+    config = configparser.ConfigParser()
+    config.read('settings.ini')
     app.config.from_mapping(
-
-        SECRET_KEY=config("SECRET_KEY"),
-        SQLALCHEMY_DATABASE_URI=config('DB_TYPE') + '://' + config("DB_USER") + ':' + config(
-            "DB_PASSWORD") + '@' + config("DB_HOST") + ':' + config("PORT") + '/' + config("DB_NAME"),
+        SECRET_KEY=config['General']["SECRET_KEY"],
+        SQLALCHEMY_DATABASE_URI=config['Main Database']['DB_DIALECT'] + '://' + config['Main Database']["DB_USERNAME"] + ':' + config['Main Database']["DB_PASSWORD"] +
+        '@' + config['Main Database']["DB_HOST"] + ':' +
+        config['Main Database']["DB_PORT"] +
+        '/' + config['Main Database']["DB_NAME"],
         SQLALCHEMY_ECHO=True,
         SQLALCHEMY_TRACK_MODIFICATIONS=True,
-        TESTING=config("TESTING"),
+        # TESTING=config("TESTING"),
         # SESSION_COOKIE_HTTPONLY=False
+        SQLALCHEMY_BINDS={
 
+
+        }
     )
 
     if test_config is None:
@@ -35,7 +44,8 @@ def create_app(test_config=None):
     from .models import db
     db.init_app(app)
     migrate = Migrate(app, db)
-
+    # with app.app_context():
+    #    db.create_all()
     from .api import loginapi
     app.register_blueprint(loginapi.login_api)
 
@@ -52,6 +62,5 @@ def create_app(test_config=None):
     # else:
     #    return abort(401)
     # myapp = app.app_context()
-    # db.create_all()
 
     return app
