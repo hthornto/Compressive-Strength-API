@@ -3,10 +3,6 @@ from decouple import config
 # from logging import config
 import logging
 
-if config("DEBUG") == False:
-    logging.basicConfig(filename='concrete-api.log',
-                        filemode='w', level=logging.INFO)
-
 
 create_app()
 

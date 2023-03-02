@@ -1,4 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
+import configparser
+
+config = configparser.ConfigParser()
+config.read('../settings.ini')
 
 db = SQLAlchemy()
 
@@ -223,6 +227,8 @@ class MixUsed(db.Model):
 
 
 class Clients(db.Model):
+    if config.has_section("Projects Databases"):
+        __bind_key__ = config["Projects Database"]["DB_Name"]
     __tablename__ = 'clients'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.Text, nullable=False)
@@ -255,6 +261,8 @@ class Clients(db.Model):
 
 
 class Projects(db.Model):
+    if config.has_section("Projects Databases"):
+        __bind_key__ = config["Projects Database"]["DB_Name"]
     __tablename__ = "projects"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.Text, unique=True, nullable=False)
@@ -272,3 +280,6 @@ class Projects(db.Model):
             "name": self.name,
             "client_id": self.client_id
         }
+
+
+# db.create_all()
