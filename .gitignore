@@ -7,5 +7,5 @@ Dockerfile
 __pycache__
 testing
 migrations
-.ini
-.log
+*.ini
+*.log
