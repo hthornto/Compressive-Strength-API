@@ -37,10 +37,12 @@ Security
         URL = /api/loginapi
         JSON required
         Methods = post
+        
         Fields = {
             api_password = api_password  #Required
             api_key = my_api_key #Required
         }
+
         The settings.ini file is essential for security purposes
     Logging Out
         URL = /api/loginapi
@@ -48,13 +50,14 @@ Security
 
 Clients
     The fields = {
-            "name": String,  #required
-            "address": String,
-            "city": Sring,
-            "state": String(2),  #Two characters long MAX
-            "postalcode": String,
+            "name": String  #required
+            "address": String
+            "city": Sring
+            "state": String(2)  #Two characters long MAX
+            "postalcode": String
             "country": String(3)  # Three characters long MAX
         }
+
     Add a client.
         The url = /api/clients
         Requires json string
@@ -75,9 +78,8 @@ Clients
 
 Projects
     The fields = {
-            "id": self.id,
-            "name": self.name,
-            "client_id": self.client_id
+            "name": String #Required
+            "client_id": Foreign Key Integer #Required
         }
     Add project
         URL = /api/projects
