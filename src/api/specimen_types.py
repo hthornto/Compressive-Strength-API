@@ -4,7 +4,7 @@ from flask import request, abort
 from ..common_elements import Auth
 
 speciman_types = flask.Blueprint(
-    "types", __name__, url_prefix="/api/compressive-strength/specimen-types/")
+    "types", __name__, url_prefix="/api/compressive-strength/specimen-types")
 
 
 @speciman_types.route("", methods=['POST'])
@@ -31,7 +31,7 @@ def create():
                 db.session.commit()
                 return flask.jsonify(specimen_types.serialize())
             except:
-                return "Unable to add speciman types. Please check the your json request."
+                return "Unable to add speciman types. Please check your json request."
     else:
         return abort(401)
 

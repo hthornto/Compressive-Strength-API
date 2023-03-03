@@ -55,7 +55,7 @@ class Sets(db.Model):
             'project_id': self.project_id,
             'field_tech_id': self.field_tech_id,
             'mix_used_id': self.mix_used_id,
-            "cylinders": self.air_content
+            # "cylinders": self.air_content
             # "isMRWH": self.isMRWH,
             # "isHRWH": self.isHRWH
         }
