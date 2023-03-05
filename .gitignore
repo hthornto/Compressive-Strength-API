@@ -5,7 +5,10 @@ Dockerfile
 .vscode
 .dockerignore
 __pycache__
-testing
+/testing
 migrations
 *.ini
 *.log
+*.html
+*.js
+.vs

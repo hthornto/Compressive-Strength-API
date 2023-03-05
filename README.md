@@ -1,7 +1,7 @@
 # Concrete-API
 
 
-#This software has been copyright by Hammond Thornton and all rights have been reserved by him.
+#This software has been copyright by the Author and all rights have been reserved by him.
 #This software currently can only be downloaded and used and not modified without the permission of the author
 
 #This api is meant to be simple and straight forward.
@@ -14,6 +14,7 @@ Setup
 3. Create and ini file titled settings.ini or use setup if you are using an postgresSQL database. I am planning on adding the ability to setup other databases within setup. See the section on what is required in the settings file.
 
 Settings.ini file
+
 The program currently requires to sections. [Main Database] and [General]. Below is a sample of the necassary components within the file  and currently the only options.
     
     [Main Database]
@@ -49,6 +50,7 @@ Security
         Methods = get
 
 Clients
+
     The fields = {
             "name": String  #required
             "address": String
@@ -77,6 +79,7 @@ Clients
         Method = get
 
 Projects
+
     The fields = {
             "name": String #Required
             "client_id": Foreign Key Integer #Required
@@ -102,6 +105,7 @@ Projects
 
 
 Mixused
+
     The fields = {
             "producer": String  #required Will probably change this to Integer and add another table titled producers. Most grout and morter are made by the contractor and not the a concrete company
             "mix_description": String
@@ -129,6 +133,7 @@ Mixused
         Method = get
 
 Mix Designs
+
     The fields = {
             'mix description': String
             "producer":  String #Required
@@ -172,6 +177,7 @@ Mix Designs
         Method = get
 
 Speciemn Types
+
     The fields = {
             "type": String (Only options "prism", cylinder, cube) #Required may add beams in the future
             'size': String  #Required that about changing this to a float or removing it.  This only helps distringishing between a 4 inch and a six inch cylinder
@@ -195,6 +201,7 @@ Speciemn Types
         Method = get
 
 Cylinders
+
     The fields{
             "set_id": Foregin Key Integer #Required
             "max_load": Integer
@@ -224,6 +231,7 @@ Cylinders
         All cylinders are shown in sets. See the section on Sets
 
 Sets
+
     The fields = {
         'slump': Float
         'air_content': Float
