@@ -1,21 +1,19 @@
 # Concrete-API
 
-
 #This software has been copyright by the Author and all rights have been reserved by him.
 #This software currently can only be downloaded and used and not modified without the permission of the author
 
-#This api is meant to be simple and straight forward.
-
+#This API is meant to be simple and straight forward.
 
 Setup
 
-1. Found a capablity database. The compatable databases are mysql, postgres, sqlite, and msSQL.
-2. Create a database or use setup if using postgresSQL.
-3. Create and ini file titled settings.ini or use setup if you are using an postgresSQL database. I am planning on adding the ability to setup other databases within setup. See the section on what is required in the settings file.
+1. Setup a compatible database. The compatible databases are MySQL, PostgreSQL, SQLite, and MSSQL.
+2. Create a database or use setup if using PostgreSQL.
+3. Create an INI file titled settings.ini or use setup if you are using an PostgreSQL database. Currently planning on adding the ability to setup other databases within setup. See the section on what is required in the settings file.
 
 Settings.ini file
 
-The program currently requires to sections. [Main Database] and [General]. Below is a sample of the necassary components within the file  and currently the only options.
+The program currently requires two sections. [Main Database] and [General]. Below is a sample of the necessary components within the file and currently the only options.
     
     [Main Database]
     db_password = my_database_password
@@ -30,9 +28,8 @@ The program currently requires to sections. [Main Database] and [General]. Below
     api_password = api_password
     api_key = my_api_key
 
-
 Security
-    The api has two different necassery components for security. The first security feature is the ability to for only those or have the api password and key. They second security feature is the secret key. It is necassery for sessions.  This allows the user to stay logged in for 30 days.  See the logging in section for logging into the api.
+    The API has two different necessary components for security. The first security feature is the ability to for only those or have the API password and key. They second security feature is the secret key. It is necessary for sessions feature of flask to work.  It allows the user to stay logged in for 30 days.  See the logging in section for logging into the API.
 
     Logging In
         URL = /api/loginapi
@@ -103,30 +100,29 @@ Projects
         method = get
     
 
-
-Mixused
+Mix Used
 
     The fields = {
-            "producer": String  #required Will probably change this to Integer and add another table titled producers. Most grout and morter are made by the contractor and not the a concrete company
+            "producer": String  #required Will probably change this to Integer and add another table titled producers. Most grout and mortar are made by the contractor and not a concrete company
             "mix_description": String
             "mix_code": String
             "strength": Integer
             "isMRWH": Boolean  #required
             "isHRWH": Boolean  #required
         }
-    Add mixused
+    Add mix used
         URL = /api/compressive-strength/mix-used
         Requires JSON string to add fields
         Method = post
-    Delete mixused
+    Delete mix used
         URL =/api/compressive-strength/mix-used
         Method = delete
-    Update mixused
-        URL = /api/compressive-strength/mix-used/<id of mixused>
+    Update mix used
+        URL = /api/compressive-strength/mix-used/<id of mix used>
         Requires JSON string
         Method = put or patch
-    Show mixused
-        URL = /api/compressive-strength/mix-used<id of mixused>
+    Show mix used
+        URL = /api/compressive-strength/mix-used<id of mix used>
         Method = get
     Show all mixes used
         URL = /api/compressive-strength/mix-used
@@ -176,15 +172,15 @@ Mix Designs
         URL /api/mix-design
         Method = get
 
-Speciemn Types
+Specimen Types
 
     The fields = {
             "type": String (Only options "prism", cylinder, cube) #Required may add beams in the future
-            'size': String  #Required that about changing this to a float or removing it.  This only helps distringishing between a 4 inch and a six inch cylinder
+            'size': String  #Required that about changing this to a float or removing it.  This only helps distinguishing between a 4 inch and a six inch cylinder
         }
-    Add specimen typs
+    Add specimen types
         URL = /api/compressive-strength/specimen-types
-        JSOn required
+        JSON required
         Method = post
     Delete specimen types
         URL = /api/compressive-strength/specimen-types<id of specimen type>
@@ -202,7 +198,7 @@ Speciemn Types
 
 Cylinders
 
-    The fields{
+    The fields = {
             "set_id": Foregin Key Integer #Required
             "max_load": Integer
             "dia1": Float
@@ -239,14 +235,14 @@ Sets
         'ticket_number': String
         'mix_id': Foreign key Integer  #Required
         'total_cy': Integer
-        'project_id': Integer  #Required  No foreign key if someone decides to use they own database for their projects infomation
+        'project_id': Integer  #Required  No foreign key if someone decides to use they own database for their projects information
         'field_tech_id': Integer
         'mix_used_id':  Foreign Key Integer
         
     }
     Add a set
         URL = /api/compressive-strength
-        Json Required
+        JSON Required
         Method = post
     Delete set
         URL = /api/compressive-strength<id of set>
@@ -261,3 +257,5 @@ Sets
         URL = /api/compressive-strength/<id of set>
         Method = get
     
+
+
